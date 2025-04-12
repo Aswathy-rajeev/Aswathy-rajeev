@@ -1,0 +1,37 @@
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+data = {
+    'Day': ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    'Patient 1': [90, 85, 88, 92, 86, 87, 89],
+    'Patient 2': [110, 108, 105, 107, 109, 111, 106],
+    'Patient 3': [95, 98, 97, 96, 94, 99, 100]
+}
+
+df = pd.DataFrame(data)
+
+avg_levels = df.drop('Day', axis=1).mean().values
+max_levels = df.drop('Day', axis=1).max().values
+min_levels = df.drop('Day', axis=1).min().values
+
+plt.figure(figsize=(10, 6))
+plt.plot(df['Day'], df['Patient 1'], marker='o', label='Patient 1')
+plt.plot(df['Day'], df['Patient 2'], marker='s', label='Patient 2')
+plt.plot(df['Day'], df['Patient 3'], marker='^', label='Patient 3')
+plt.title("Blood Sugar Levels Over One Week")
+plt.xlabel("Day")
+plt.ylabel("Blood Sugar Level (mg/dL)")
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+plt.figure(figsize=(8, 5))
+df.drop('Day', axis=1).plot(kind='line')
+plt.title("Blood Sugar Level Distribution")
+plt.ylabel("Blood Sugar Level (mg/dL)")
+plt.grid(True)
+plt.tight_layout()
+plt.show()
